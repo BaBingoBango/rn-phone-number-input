@@ -17,6 +17,8 @@ interface PhoneNumberInputProps {
   fieldStyles?: ViewStyle;
   textStyles?: TextStyle;
   onEndEditing?: Function;
+  placeholder?: string;
+  placeholderTextColor?: string;
 }
 
 const CountryAwarePhoneInput = ({
@@ -26,6 +28,7 @@ const CountryAwarePhoneInput = ({
   textStyles,
   onEndEditing,
   placeholder,
+  placeholderTextColor,
 }: PhoneNumberInputProps) => {
   const { state, dispatch } = manager;
   const backgroundColor = manager.state.darkMode ? '#1E1E20' : '#E9ECEF';
@@ -39,7 +42,8 @@ const CountryAwarePhoneInput = ({
         textStyles={{ color: textColor, ...textStyles }}
       />
       <TextInput
-        placeholder={placeholder}
+        placeholder={props.placeholder}
+        placeholderTextColor={props.placeholderTextColor}
         autoComplete={'tel'}
         onFocus={() => dispatch({ type: 'setHidden', payload: true })}
         onChange={(e) =>
